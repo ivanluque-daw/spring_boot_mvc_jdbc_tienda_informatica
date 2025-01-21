@@ -1,0 +1,51 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Producto</title>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div class="container mx-auto px-4">
+    <form th:action="@{/productos/crear/}" th:object="${producto}" method="post">
+        <div class="flex flex-row py-4 items-center border-b-2 p-2">
+            <div class="basis-1/2 text-4xl">
+                <h1>Crear Producto</h1>
+            </div>
+            <div class="basis-1/2 flex justify-center">
+                <button class="btn btn-blue float-right">Guardar</button>
+            </div>
+        </div>
+        <div class="flex flex-row my-0.5">
+            <div class="basis-1/2">
+                Nombre
+            </div>
+            <div class="basis-1/2">
+                <input class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight" th:field="*{nombre}" />
+            </div>
+        </div>
+        <div class="flex flex-row my-0.5">
+            <div class="basis-1/2">
+                Precio
+            </div>
+            <div class="basis-1/2">
+                <input type="number" min="0" step="0.01" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight" th:field="*{precio}" />
+            </div>
+        </div>
+        <div class="flex flex-row my-0.5">
+            <div class="basis-1/2">
+                Fabricante
+            </div>
+            <div class="basis-1/2">
+                <select th:field="*{fabricante.codigo}" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight">
+                    <option th:each="fabricante : ${fabricantes}"
+                            th:value="${fabricante.codigo}"
+                            th:text="${fabricante.nombre}">
+                    </option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
